@@ -94,14 +94,5 @@ html {
 /* layout */
 .container {
   margin: 0 auto;
-  width: 1124px;
-}
-
-.page-header {
-  background: #ccc;
-  /* height: 40px; */
-}
-
-.page-header .container {
   width: calc(100% - 32px);
 }

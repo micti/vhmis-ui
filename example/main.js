@@ -1,7 +1,23 @@
 // Polyfill check
 // Element.closest()
+// Element.classList.toggle()
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Apps bar
+  var appsBar = document.querySelector('.global-header')
+  var appsBarOpen = document.querySelector('.page-header--apps-icon')
+  var appsBarClose = document.querySelector('.global-header--close')
+
+  appsBarOpen.addEventListener('click', function (event) {
+    appsBar.classList.toggle('is-active')
+    appsBarOpen.classList.toggle('is-active')
+  })
+
+  appsBarClose.addEventListener('click', function (event) {
+    appsBar.classList.remove('is-active')
+    appsBarOpen.classList.remove('is-active')
+  })
+
   // Submenu open & close
   var submenus = document.querySelectorAll('.has-submenu')
 
