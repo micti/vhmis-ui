@@ -19,22 +19,23 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
   // Submenu open & close
-  var submenus = document.querySelectorAll('.has-submenu')
+  var submenusTrigger = document.querySelectorAll('.has-submenu > a')
 
   document.addEventListener('click', function (event) {
     closeSubmenus(event.target)
   })
 
-  submenus.forEach(function (el) {
+  submenusTrigger.forEach(function (el) {
     el.addEventListener('click', function (event) {
       event.preventDefault()
-      el.classList.add('is-active')
+      el.closest('.has-submenu').classList.add('is-active')
     })
   })
 
-  function closeSubmenus(target) {
+  function closeSubmenus (target) {
     var parent = target.closest('.has-submenu')
-    submenus.forEach(function (el) {
+    submenusTrigger.forEach(function (el) {
+      el = el.closest('.has-submenu')
       if (parent !== null && parent === el) {
         return
       }
