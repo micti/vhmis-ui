@@ -93,7 +93,7 @@
 
 .page-header--menu > ul > li {
   margin-right: 2rem;
-  border-bottom: 4px solid #3f51b5;
+  border-bottom: 2px solid #3273dc;
   padding: 12px 0 10px 0;
   cursor: pointer; }
 
@@ -101,7 +101,7 @@
   margin-right: 0px; }
 
 .page-header--menu > ul > li.is-active, .page-header--menu > ul > li.is-selected, .page-header--menu > ul > li:hover {
-  border-bottom: 4px solid #e8eaf6; }
+  border-bottom: 2px solid #fff; }
 
 .page-header--menu > ul > li > a {
   color: #fff;
