@@ -1,5 +1,9 @@
 // fonts
 $system-font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+$fixed-font: "SF Mono", "Segoe UI Mono", "Roboto Mono", "Ubuntu Mono", Menlo, Courier, monospace;
+$font-text: $system-font;
+$font-form: inherit; // from font-text
+$font-code: $fixed-font;
 
 // colors
 
