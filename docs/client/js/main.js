@@ -28,12 +28,21 @@ document.addEventListener('DOMContentLoaded', function () {
   submenusTrigger.forEach(function (el) {
     el.addEventListener('click', function (event) {
       event.preventDefault()
+      appsBar.classList.remove('is-active')
+      appsBarOpen.classList.remove('is-active')
       el.closest('.has-submenu').classList.add('is-active')
     })
   })
 
   function closeSubmenus (target) {
     var parent = target.closest('.has-submenu')
+    // var isParentGlobal = target.closest('.global-header')
+
+    // if (isParentGlobal === null) {
+    //   appsBar.classList.remove('is-active')
+    //   appsBarOpen.classList.remove('is-active')
+    // }
+
     submenusTrigger.forEach(function (el) {
       el = el.closest('.has-submenu')
       if (parent !== null && parent === el) {
