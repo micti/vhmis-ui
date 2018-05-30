@@ -1,0 +1,10 @@
+# frozen_string_literal: true
+
+source "https://rubygems.org"
+
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# gem "rails"
+
+# Added at 2018-05-30 08:19:19 +0700 by micti:
+gem "jekyll", "~> 3.8"
