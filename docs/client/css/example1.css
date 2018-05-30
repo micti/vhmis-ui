@@ -196,10 +196,13 @@ body {
 }
 
 .page-menu--menu > ul > li {
-  margin-right: 2rem;
   padding: 14px 0 10px 0;
   cursor: pointer;
   height: 48px;
+}
+
+.page-menu--menu > ul > li + li {
+  margin-left: 2rem;
 }
 
 .page-menu--menu > ul > li > a {
