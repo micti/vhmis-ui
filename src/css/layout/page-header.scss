@@ -30,6 +30,11 @@ $page-header-background-color-hover: $indigo-50;
   font-weight: 700;
 }
 
+.page-header--title a {
+  text-decoration: none;
+  color: #fff;
+}
+
 .global-header--apps ul li + li {
   margin-top: 0.25rem;
 }
