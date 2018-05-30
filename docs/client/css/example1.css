@@ -8,9 +8,20 @@ body {
   position: fixed;
   top: 50px;
   width: 100%;
-  height: 100%;
+  height: 0;
   overflow-y: auto;
   background: #3f51b5;
+  transition: height .5s;
+}
+
+.apps-menu.is-active {
+  height: 100%;
+}
+
+@media screen and (min-width: 1024px) {
+  .apps-menu {
+    overflow-y: hidden;
+  }
 }
 
 .global-header {
@@ -49,21 +60,6 @@ body {
   font-weight: 700;
   color: #fff;
   text-decoration: none;
-}
-
-@media screen and (min-width: 1024px) {
-  .global-header--wrapper {
-    display: flex;
-  }
-
-  .global-header--title {
-    flex: 0 0 128px;
-    margin-right: 0px;
-  }
-
-  .global-header--apps {
-    margin-top: 6px;
-  }
 }
 
 .page-header {
@@ -177,11 +173,11 @@ body {
   cursor: pointer;
   padding-top: 18px;
   border-right: 1px solid #ddd;
+  display: none;
 }
 
 .page-menu--apps-icon.is-active {
-  background-color: #fff;
-  color: #3273dc;
+  display: block;
 }
 
 .page-menu--menu {
