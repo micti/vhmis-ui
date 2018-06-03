@@ -1,7 +1,6 @@
 const gulp = require('gulp')
 const sass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css')
-const watch = require('gulp-watch')
 const concat = require('gulp-concat')
 const minify = require('gulp-minify')
 const sourcemaps = require('gulp-sourcemaps')
@@ -10,13 +9,13 @@ const clientPath = 'src/'
 const jsClientPath = clientPath + '/js'
 const cssClientPath = clientPath + '/css'
 const jsFile = [
-  //jsClientPath + '/token.js',
-  //jsClientPath + '/modal.js',
+  // jsClientPath + '/token.js',
+  // jsClientPath + '/modal.js',
   jsClientPath + '/main.js'
 ]
 
 const cssFile = [
-  cssClientPath + '/main.scss',
+  cssClientPath + '/main.scss'
 ]
 
 gulp.task('watch', () => {

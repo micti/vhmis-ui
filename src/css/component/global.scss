@@ -5,3 +5,7 @@ html {
   text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
 }
+
+body {
+  background-color: $body-bg-color;
+}

@@ -1,7 +1,3 @@
-body {
-  background: #F8F8F8;
-}
-
 .apps-menu {
   position: fixed;
   top: 50px;
@@ -29,8 +25,6 @@ body {
 
 .global-header--wrapper {
   margin: 0 16px;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   width: calc(100% - 32px);
 }
 
@@ -40,18 +34,24 @@ body {
 }
 
 .global-header--apps {
-  margin-top: 8px;
 }
 
 .global-header--apps ul {
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .global-header--apps ul li {
   margin-right: 2rem;
   white-space: nowrap;
+  padding-bottom: 8px;
+  padding-top: 12px;
+}
+
+.global-header--apps ul li.is-active {
+  border-bottom: 2px solid #fff;
 }
 
 .global-header--apps ul li a {
@@ -71,7 +71,7 @@ body {
 }
 
 .page-header--title {
-  padding: 16px 16px 16px 0;
+  padding-top: 16px;
   font-weight: 700;
   font-size: 1.3rem;
   display: block;
@@ -83,39 +83,32 @@ body {
 }
 
 .page-header--menu > ul > li {
+  margin-top: 1.5rem;
   margin-right: 2rem;
-  width: 250px;
-}
-
-.page-header--menu > ul > li + li {
-  margin-top: 8px;
+  width: 240px;
 }
 
 .page-header--menu > ul > li > a {
   color: #fff;
   text-decoration: none;
   display: block;
-  line-height: 20px;
-  margin-bottom: 8px;
   font-weight: 500;
 }
 
 .page-header--menu > ul > li > a > img, .page-header--menu > ul > li > a > span {
   display: inline-block;
-  vertical-align: middle;
-  line-height: 1;
 }
 
 .page-header--menu > ul > li > a > img {
-  line-height: 1;
+  line-height: 1.25;
 }
 
 .page-header--submenu {
-  margin-left: 8px;
+  margin-left: 16px;
 }
 
-.page-header--submenu li + li {
-  margin-top: 4px;
+.page-header--submenu li {
+  margin-top: 16px;
 }
 
 .page-header--submenu a {
@@ -129,26 +122,9 @@ body {
 }
 
 @media screen and (min-width: 770px) {
-  .page-header--wrapper {
-    display: flex;
-    flex-wrap: nowrap;
-  }
-
-  .page-header--title {
-    flex: 0 0 128px;
-  }
-
   .page-header--menu > ul {
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .page-header--menu > ul > li, .page-header--menu > ul > li + li {
-    margin-top: 1rem;
-  }
-
-  .page-header--submenu {
-    margin-left: 0;
   }
 }
 
@@ -233,11 +209,10 @@ body {
   cursor: default;
   background: #fff;
   position: absolute;
-  top: 51px;
-  width: 100%;
-  right: 0;
+  top: 32px;
+  right: 16px;
   height: 0;
-  left: unset;
+  left: 16px;
   display: none;
 }
 
@@ -247,14 +222,6 @@ body {
 
 .has-submenu.is-alert-menu .page-menu--submenu {
   height: 200px;
-}
-
-.has-submenu.is-active .page-menu--submenu {
-  display: block;
-}
-
-.has-submenu.is-active {
-  border-bottom: 2px solid #ddd;
 }
 
 .has-submenu.is-active .page-menu--submenu {
@@ -272,6 +239,7 @@ body {
 @media screen and (min-width: 400px) {
   .page-menu--submenu {
     right: 16px;
+    left: unset;
     width: 250px;
   }
 
