@@ -25,3 +25,13 @@ $size-5: 20px;
 // global
 
 $body-bg-color: #f8f8f8;
+
+// responsive
+
+$gap: 64px !default;
+$tablet: 769px !default;
+$desktop: 960px + (2 * $gap) !default;
+$widescreen: 1152px + (2 * $gap) !default;
+$widescreen-enabled: true !default;
+$fullhd: 1344px + (2 * $gap) !default;
+$fullhd-enabled: true !default;
