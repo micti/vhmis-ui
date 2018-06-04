@@ -3,19 +3,18 @@
 // Element.classList.toggle()
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Apps bar
-  var appsBar = document.querySelector('.global-header')
-  var appsBarOpen = document.querySelector('.page-header--apps-icon')
-  var appsBarClose = document.querySelector('.global-header--close')
-
-  appsBarOpen.addEventListener('click', function (event) {
-    appsBar.classList.toggle('is-active')
-    appsBarOpen.classList.toggle('is-active')
+  var appsOpenIcon = document.querySelector('.page-menu--apps-icon.open-button')
+  var appsCloseIcon = document.querySelector('.page-menu--apps-icon.close-button')
+  var appsMenu = document.querySelector('.apps-menu')
+  appsOpenIcon.addEventListener('click', function (e) {
+    appsMenu.classList.toggle('is-active')
+    appsOpenIcon.classList.toggle('is-active')
+    appsCloseIcon.classList.toggle('is-active')
   })
-
-  appsBarClose.addEventListener('click', function (event) {
-    appsBar.classList.remove('is-active')
-    appsBarOpen.classList.remove('is-active')
+  appsCloseIcon.addEventListener('click', function (e) {
+    appsMenu.classList.toggle('is-active')
+    appsOpenIcon.classList.toggle('is-active')
+    appsCloseIcon.classList.toggle('is-active')
   })
 
   // Submenu open & close
@@ -28,21 +27,12 @@ document.addEventListener('DOMContentLoaded', function () {
   submenusTrigger.forEach(function (el) {
     el.addEventListener('click', function (event) {
       event.preventDefault()
-      appsBar.classList.remove('is-active')
-      appsBarOpen.classList.remove('is-active')
       el.closest('.has-submenu').classList.add('is-active')
     })
   })
 
   function closeSubmenus (target) {
     var parent = target.closest('.has-submenu')
-    // var isParentGlobal = target.closest('.global-header')
-
-    // if (isParentGlobal === null) {
-    //   appsBar.classList.remove('is-active')
-    //   appsBarOpen.classList.remove('is-active')
-    // }
-
     submenusTrigger.forEach(function (el) {
       el = el.closest('.has-submenu')
       if (parent !== null && parent === el) {

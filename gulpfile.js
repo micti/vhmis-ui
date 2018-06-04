@@ -28,6 +28,7 @@ gulp.task('js', () => {
     .pipe(concat('main.js'))
     .pipe(minify())
     .pipe(gulp.dest('client/js'))
+    .pipe(gulp.dest('docs/client/js'))
 })
 
 gulp.task('css', () => {
