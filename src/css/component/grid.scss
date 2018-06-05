@@ -22,25 +22,47 @@ $col-gap: 16px;
   padding: $col-gap;
 
   @for $i from 1 through 12 {
-    .cols.is-mobile &.is-#{$i}-p-12 {
+    .cols.is-mobile &.is-#{$i} {
       flex: none;
       width: percentage($i / 12);
     }
 
-    .cols.is-mobile &.is-offset-#{$i}-p-12 {
+    .cols.is-mobile &.is-offset-#{$i} {
       margin-left: percentage($i / 12);
+    }
+  }
+
+  @for $i from 1 through 16 {
+    .cols.is-mobile.is-16 &.is-#{$i} {
+      flex: none;
+      width: percentage($i / 16);
+    }
+
+    .cols.is-mobile.is-16 &.is-offset-#{$i} {
+      margin-left: percentage($i / 16);
     }
   }
 
   @include tablet {
     @for $i from 1 through 12 {
-      &.is-#{$i}-p-12 {
+      &.is-#{$i} {
         flex: none;
         width: percentage($i / 12);
       }
 
-      &.is-offset-#{$i}-p-12 {
+      &.is-offset-#{$i} {
         margin-left: percentage($i / 12);
+      }
+    }
+
+    @for $i from 1 through 16 {
+      .cols.is-16 &.is-#{$i} {
+        flex: none;
+        width: percentage($i / 16);
+      }
+
+      .cols.is-16 &.is-offset-#{$i} {
+        margin-left: percentage($i / 16);
       }
     }
   }

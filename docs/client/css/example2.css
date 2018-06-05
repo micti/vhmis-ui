@@ -1,0 +1,7 @@
+.cols.is-blue .col p {
+  background-color: blue;
+}
+
+.cols.is-red .col p {
+  background-color: red;
+}
