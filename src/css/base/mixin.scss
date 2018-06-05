@@ -9,3 +9,21 @@
     @content
   }
 }
+
+@mixin widescreen {
+  @media screen and (min-width: $widescreen) {
+    @content
+  }
+}
+
+@mixin widescreen-only {
+  @media screen and (min-width: $widescreen) and (max-width: $fullhd - 1px) {
+    @content
+  }
+}
+
+@mixin fullhd {
+  @media screen and (min-width: $fullhd) {
+    @content
+  }
+}
