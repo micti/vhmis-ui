@@ -2429,12 +2429,8 @@ h5, h6 {
         text-decoration: none;
         display: block;
         line-height: 20px; }
-        .extra-menu--menu > ul > li > a > img, .extra-menu--menu > ul > li > a > span {
-          display: inline-block;
-          vertical-align: middle;
-          line-height: 1; }
         .extra-menu--menu > ul > li > a > img {
-          line-height: 1; }
+          display: inline-flex; }
 
 .extra-menu--submenu {
   cursor: default;
@@ -2471,7 +2467,7 @@ h5, h6 {
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
   padding-top: 16px; }
-  .page-header .tabs .tabs-wrapper {
+  .page-header .tabs .tabs---wrapper, .page-header .tabs ul {
     border-bottom: 0px; }
 
 .page-header--main h1 {

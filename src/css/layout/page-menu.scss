@@ -200,14 +200,8 @@ $page-menu-background-color-hover: $indigo-50;
         display: block;
         line-height: 20px;
 
-        > img, > span {
-          display: inline-block;
-          vertical-align: middle;
-          line-height: 1;
-        }
-
         > img {
-          line-height: 1;
+          display: inline-flex;
         }
       }
     }
