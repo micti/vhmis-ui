@@ -10,6 +10,7 @@ $page-menu-background-color-hover: $indigo-50;
   overflow-y: auto;
   background: $page-menu-background-color;
   transition: height .5s;
+  z-index: 100;
 
   &.is-active {
     height: 100%;
@@ -17,7 +18,7 @@ $page-menu-background-color-hover: $indigo-50;
 }
 
 @media screen and (min-width: 1024px) {
-  .page-header {
+  .page-menu {
     overflow-y: hidden;
   }
 }
