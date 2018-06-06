@@ -478,19 +478,22 @@ h4 {
 h5, h6 {
   font-size: 1rem; }
 
-.tabs .tabs-wrapper {
-  display: flex; }
-  .tabs .tabs-wrapper .tab {
+.tabs .tabs--wrapper, .tabs ul {
+  display: flex;
+  border-bottom: 1px solid #ddd; }
+  .tabs .tabs--wrapper .tab, .tabs .tabs--wrapper li, .tabs ul .tab, .tabs ul li {
     border-bottom: 3px solid transparent;
     padding-bottom: 8px;
     cursor: pointer; }
-    .tabs .tabs-wrapper .tab + .tab {
+    .tabs .tabs--wrapper .tab + .tab, .tabs .tabs--wrapper .tab + li, .tabs .tabs--wrapper li + .tab, .tabs .tabs--wrapper li + li, .tabs ul .tab + .tab, .tabs ul .tab + li, .tabs ul li + .tab, .tabs ul li + li {
       margin-left: 16px; }
-    .tabs .tabs-wrapper .tab.is-active {
+    .tabs .tabs--wrapper .tab.is-active, .tabs .tabs--wrapper li.is-active, .tabs ul .tab.is-active, .tabs ul li.is-active {
       border-bottom-color: #3f51b5; }
-    .tabs .tabs-wrapper .tab:hover {
-      border-bottom-color: #303f9f; }
-    .tabs .tabs-wrapper .tab a {
+      .tabs .tabs--wrapper .tab.is-active:hover, .tabs .tabs--wrapper li.is-active:hover, .tabs ul .tab.is-active:hover, .tabs ul li.is-active:hover {
+        border-bottom-color: #3f51b5; }
+    .tabs .tabs--wrapper .tab:hover, .tabs .tabs--wrapper li:hover, .tabs ul .tab:hover, .tabs ul li:hover {
+      border-bottom-color: #ccc; }
+    .tabs .tabs--wrapper .tab a, .tabs .tabs--wrapper li a, .tabs ul .tab a, .tabs ul li a {
       color: inherit;
       text-decoration: none;
       cursor: inherit; }
@@ -759,6 +762,8 @@ h5, h6 {
   background-color: #fff;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
   padding-top: 16px; }
+  .page-header .tabs .tabs-wrapper {
+    border-bottom: 0px; }
 
 .page-header--main h1 {
   font-size: 1.2rem; }

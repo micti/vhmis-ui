@@ -1,24 +1,29 @@
 .tabs {
-  .tabs-wrapper {
+  .tabs--wrapper, ul {
     display: flex;
+    border-bottom: 1px solid #ddd;
 
-    .tab {
+    .tab, li {
       // padding-left: 16px;
       // padding-right: 16px;
       border-bottom: 3px solid transparent;
       padding-bottom: 8px;
       cursor: pointer;
 
-      + .tab {
+      + .tab, + li {
         margin-left: 16px;
       }
 
       &.is-active {
         border-bottom-color: $indigo-500;
+
+        &:hover {
+          border-bottom-color: $indigo-500;
+        }
       }
 
       &:hover {
-        border-bottom-color: $indigo-700;
+        border-bottom-color: #ccc;
       }
 
       a {
