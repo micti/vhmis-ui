@@ -33,3 +33,99 @@
     @content
   }
 }
+
+%unselectable {
+  user-select: none;
+}
+
+@mixin unselectable {
+  @extend %unselectable;
+}
+
+$control-radius: $radius !default;
+$control-radius-small: $radius-small !default;
+
+$control-border-width: 1px !default;
+
+$control-padding-vertical: calc(0.375em - #{$control-border-width}) !default;
+$control-padding-horizontal: calc(0.625em - #{$control-border-width}) !default;
+
+%control {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  align-items: center;
+  border: $control-border-width solid transparent;
+  border-radius: $control-radius;
+  box-shadow: none;
+  display: inline-flex;
+  font-size: $size-normal;
+  height: 2.25em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: $control-padding-vertical;
+  padding-left: $control-padding-horizontal;
+  padding-right: $control-padding-horizontal;
+  padding-top: $control-padding-vertical;
+  position: relative;
+  vertical-align: top;
+
+  // States
+  &:focus,
+  &.is-focused,
+  &:active,
+  &.is-active {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+}
+
+@mixin control {
+  @extend %control;
+}
+
+// The controls sizes use mixins so they can be used at different breakpoints
+@mixin control-small {
+  border-radius: $control-radius-small;
+  font-size: $size-small;
+}
+
+@mixin control-medium {
+  font-size: $size-medium;
+}
+
+@mixin control-large {
+  font-size: $size-large;
+}
+
+@mixin center($width, $height: 0) {
+  position: absolute;
+
+  @if $height != 0 {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$height} / 2));
+  }
+  @else {
+    left: calc(50% - (#{$width} / 2));
+    top: calc(50% - (#{$width} / 2));
+  }
+}
+
+%loader {
+  animation: spinAround 500ms infinite linear;
+  border: 2px solid $border;
+  border-radius: $radius-rounded;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 1em;
+  position: relative;
+  width: 1em;
+}
+
+@mixin loader {
+  @extend %loader;
+}
