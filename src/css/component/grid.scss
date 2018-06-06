@@ -3,7 +3,6 @@ $col-gap: 16px;
 .cols {
   margin-left: (-$col-gap);
   margin-right: (-$col-gap);
-  margin-top: (-$col-gap);
 
   &.is-mobile {
     display: flex;
@@ -19,7 +18,8 @@ $col-gap: 16px;
   flex-basis: 0;
   flex-grow: 1;
   flex-shrink: 1;
-  padding: $col-gap;
+  padding-left: $col-gap;
+  padding-right: $col-gap;
 
   @for $i from 1 through 12 {
     .cols.is-mobile &.is-#{$i} {
@@ -64,6 +64,13 @@ $col-gap: 16px;
       .cols.is-16 &.is-offset-#{$i} {
         margin-left: percentage($i / 16);
       }
+    }
+  }
+
+  // order
+  @for $i from 1 through 30 {
+    &.is-o-#{$i} {
+      order: $i;
     }
   }
 }

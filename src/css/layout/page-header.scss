@@ -1,0 +1,23 @@
+.page-header {
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1);
+  padding-top: 16px;
+}
+
+.page-header--main {
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
+.page-header--actions {
+  ul {
+    display: flex;
+    float: right;
+
+    li + li {
+      margin-left: 16px;
+    }
+  }
+}

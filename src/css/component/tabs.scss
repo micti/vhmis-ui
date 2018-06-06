@@ -1,0 +1,31 @@
+.tabs {
+  .tabs-wrapper {
+    display: flex;
+
+    .tab {
+      // padding-left: 16px;
+      // padding-right: 16px;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 8px;
+      cursor: pointer;
+
+      + .tab {
+        margin-left: 16px;
+      }
+
+      &.is-active {
+        border-bottom-color: $indigo-500;
+      }
+
+      &:hover {
+        border-bottom-color: $indigo-700;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        cursor: inherit;
+      }
+    }
+  }
+}
