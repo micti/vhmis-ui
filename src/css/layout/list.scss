@@ -10,7 +10,25 @@
     }
 
     .col {
-      .is-action {
+      &.is-action {
+        margin-right: 0px;
+        margin-left: auto;
+        text-align: right;
+
+        a {
+          display: inline-block;
+          color: inherit;
+
+          .icon {
+            background: #eee;
+            border-radius: 2px;
+
+            &.is-danger {
+              background: $danger;
+              color: $danger-invert;
+            }
+          }
+        }
       }
     }
   }

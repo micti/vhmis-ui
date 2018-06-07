@@ -2549,5 +2549,18 @@ h5, h6 {
     border-bottom: 1px solid #ddd; }
     .list .row.is-header {
       font-weight: 700; }
+    .list .row .col.is-action {
+      margin-right: 0px;
+      margin-left: auto;
+      text-align: right; }
+      .list .row .col.is-action a {
+        display: inline-block;
+        color: inherit; }
+        .list .row .col.is-action a .icon {
+          background: #eee;
+          border-radius: 2px; }
+          .list .row .col.is-action a .icon.is-danger {
+            background: #ff3860;
+            color: #fff; }
 
 /*# sourceMappingURL=main.css.map */
