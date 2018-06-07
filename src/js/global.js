@@ -2,7 +2,7 @@
 // Element.closest()
 // Element.classList.toggle()
 
-document.addEventListener('DOMContentLoaded', function () {
+export default function init() {
   var appsOpenIcon = document.querySelector('.extra-menu--apps-icon.open-button')
   var appsCloseIcon = document.querySelector('.extra-menu--apps-icon.close-button')
   var appsMenu = document.querySelector('.page-menu')
@@ -41,4 +41,4 @@ document.addEventListener('DOMContentLoaded', function () {
       el.classList.remove('is-active')
     })
   }
-})
+}
