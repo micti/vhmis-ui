@@ -2256,21 +2256,19 @@ h5, h6 {
 .dropdown-item {
   color: #000;
   display: block;
-  padding: 0.5rem 1rem;
   position: relative;
   white-space: nowrap; }
-  .dropdown-item:hover {
-    background-color: #3f51b5;
-    color: #fff; }
-  .dropdown-item.is-active {
-    background-color: #303f9f;
-    color: #fff; }
   .dropdown-item a {
     display: block;
     color: #000;
-    text-decoration: none; }
+    text-decoration: none;
+    padding: 0.5rem 1rem; }
     .dropdown-item a:hover {
+      background-color: #3f51b5;
       color: #fff; }
+  .dropdown-item.is-active a {
+    background-color: #303f9f;
+    color: #fff; }
 
 .dropdown-divider {
   background-color: #ddd;
