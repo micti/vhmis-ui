@@ -43,3 +43,21 @@ body {
     width: 1344px;
   }
 }
+
+.overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-color: rgba(250, 250, 250, 0.5);
+  overflow-x: auto;
+  overflow-y: scroll;
+  display: none;
+  cursor: pointer;
+
+  &.is-active {
+    display: block;
+  }
+}

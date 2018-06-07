@@ -1,0 +1,44 @@
+.modal {
+  position: static;
+  float: right;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 3px 6px rgba(34, 25, 25, 0.4);
+  padding: 1rem;
+  min-height: 100%;
+  cursor: default;
+  display: none;
+  box-sizing: border-box;
+
+  .container {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &.is-active {
+    display: block;
+  }
+
+  @include tablet {
+    width: 70%;
+  }
+
+  @include desktop {
+    width: 800px;
+  }
+}
+
+.modal--close {
+  position: fixed;
+  right: 15px;
+  top: 5px;
+  z-index: 1100;
+  cursor: pointer;
+  background-color: #ddd;
+  border-radius: 4px;
+
+  @include tablet {
+    display: none;
+  }
+}

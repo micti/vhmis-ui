@@ -75,12 +75,6 @@
         <div class="extra-menu--wrapper">
           <span class="extra-menu--apps-icon open-button is-active"><i class="fas fa-bars"></i></span>
           <span class="extra-menu--apps-icon close-button"><i class="fas fa-times"></i></span>
-          <span class="extra-menu--extra-text"><i class="fas fa-qrcode"></i> 19:52 - Thứ 6, 22/2017</span>
-          <nav class="extra-menu--menu">
-            <ul>
-              <li><i class="fas fa-th"></i> Danh sách đề tài</li>
-            </ul>
-          </nav>
           <nav class="extra-menu--menu is-right-menu">
             <ul>
               <li class="has-submenu is-alert-menu">
@@ -117,12 +111,12 @@
 
     <div class="page-header">
       <div class="container">
-        <div class="page-header--main cols">
+        <div class="page-header--main cols m-b-4">
           <div class="page-header--actions col is-o-2">
             <ul>
-              <li><a class="button">Action1</a></li>
-              <li><a class="button">Action2</a></li>
-              <li><a class="button">Action3</a></li>
+              <li><a class="button is-primary">Action1</a></li>
+              <li><a class="button is-danger">Action2</a></li>
+              <li><a class="button is-link">Action3</a></li>
             </ul>
           </div>
           <h1 class="col is-o-1">
@@ -130,27 +124,11 @@
             Một số component
           </h1>
         </div>
-        <nav class="page-header--nav tabs m-t-4">
-          <ul class="tabs--wrapper">
-            <li class="tab is-active"><a href="">Bài báo</a></li>
-            <li class="tab"><a href="">Hội nghị</a></li>
-            <li class="tab"><a href="">Đề tài</a></li>
-          </ul>
-        </nav>
       </div>
     </div>
 
     <div class="m-t-4">
       <div class="container">
-        <h2 class="m-b-4">Tabs</h1>
-        <div class="tabs m-b-4">
-          <ul class="tabs--wrapper">
-            <li class="is-active">Tab1</li>
-            <li>Tab2</li>
-            <li>Tab3</li>
-            <li>Tab4</li>
-          </ul>
-        </div>
         <nav class="tabs">
           <ul>
             <li><a href="example1.html">example1</a></li>
@@ -160,93 +138,21 @@
             <li><a href="example5.html">example4</a></li>
           </ul>
         </nav>
-        <h2 class="m-t-4 m-b-4">Form</h2>
-        <form>
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Text input">
-            </div>
+        <h2 class="m-t-4 m-b-4">Cards</h2>
+        <div class="cols">
+          <div class="col is-9">
+            <div class="card">Card 1</div>
           </div>
-
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </div>
-            <p class="help is-success">This username is available</p>
+          <div class="col">
+            <div class="card">Card 2</div>
           </div>
-
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
-              <input class="input is-danger" type="email" placeholder="Email input" value="hello@">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
-            </div>
-            <p class="help is-danger">This email is invalid</p>
-          </div>
-
-          <div class="field">
-            <label class="label">Subject</label>
-            <div class="control">
-              <div class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>With options</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Message</label>
-            <div class="control">
-              <textarea class="textarea" placeholder="Textarea"></textarea>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox">
-                I agree to the <a href="#">terms and conditions</a>
-              </label>
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <label class="radio">
-                <input type="radio" name="question">
-                Yes
-              </label>
-              <label class="radio">
-                <input type="radio" name="question">
-                No
-              </label>
-            </div>
-          </div>
-
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-link">Submit</button>
-            </div>
-            <div class="control">
-              <button class="button is-text">Cancel</button>
-            </div>
-          </div>
-        </form>
+        </div>
+      </div>
+    </div>
+    <div class="overlay is-active">
+      <div class="modal is-active">
+        <span class="modal--close icon"><i class="fas fa-times"></i></span>
+        <div class="container" style="height: 1000px; background-color: antiquewhite">Modal Content</div>
       </div>
     </div>
     <script src="../client/js/main.js"></script>
