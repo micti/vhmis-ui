@@ -2542,4 +2542,12 @@ h5, h6 {
   .page-header--actions ul li + li {
     margin-left: 16px; }
 
+.list {
+  overflow: hidden; }
+  .list .row {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd; }
+    .list .row.is-header {
+      font-weight: 700; }
+
 /*# sourceMappingURL=main.css.map */

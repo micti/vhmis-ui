@@ -1,0 +1,17 @@
+.list {
+  overflow: hidden;
+
+  .row {
+    padding: 8px 0;
+    border-bottom: 1px solid #ddd;
+
+    &.is-header {
+      font-weight: 700;
+    }
+
+    .col {
+      .is-action {
+      }
+    }
+  }
+}
