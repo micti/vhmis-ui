@@ -2279,6 +2279,17 @@ h5, h6 {
     height: 3rem;
     width: 3rem; }
 
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1); }
+  .card.is-round {
+    border-radius: 4px; }
+  .card.is-no-padding {
+    padding: 0px; }
+  .card.is-no-shadow {
+    box-shadow: none; }
+
 .m-r-4 {
   margin-right: 16px; }
 

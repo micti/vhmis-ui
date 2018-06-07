@@ -1,0 +1,17 @@
+.card {
+  background-color: #fff;
+  padding: 1rem;
+  box-shadow: 2px 3px rgba($black, 0.1), 0 0 0 1px rgba($black, 0.1);
+
+  &.is-round {
+    border-radius: 4px;
+  }
+
+  &.is-no-padding {
+    padding: 0px;
+  }
+
+  &.is-no-shadow {
+    box-shadow: none;
+  }
+}
