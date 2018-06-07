@@ -2,6 +2,7 @@
   .tabs--wrapper, ul {
     display: flex;
     border-bottom: 1px solid #ddd;
+    overflow-x: auto;
 
     .tab, li {
       // padding-left: 16px;

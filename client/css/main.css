@@ -2186,7 +2186,8 @@ h5, h6 {
 
 .tabs .tabs--wrapper, .tabs ul {
   display: flex;
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #ddd;
+  overflow-x: auto; }
   .tabs .tabs--wrapper .tab, .tabs .tabs--wrapper li, .tabs ul .tab, .tabs ul li {
     border-bottom: 3px solid transparent;
     padding-bottom: 8px;
