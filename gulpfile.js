@@ -3,6 +3,7 @@ const sass = require('gulp-sass')
 const cleanCSS = require('gulp-clean-css')
 const concat = require('gulp-concat')
 const minify = require('gulp-minify')
+const webpack = require('webpack-stream')
 const sourcemaps = require('gulp-sourcemaps')
 
 const clientPath = 'src/'
@@ -19,14 +20,13 @@ const cssFile = [
 ]
 
 gulp.task('watch', () => {
-  //gulp.watch(jsFile, ['js'])
+  gulp.watch('src/js/**/*.js', ['js'])
   gulp.watch('src/css/**/*.scss', ['css'])
 })
 
 gulp.task('js', () => {
-  gulp.src(jsFile)
-    .pipe(concat('main.js'))
-    .pipe(minify())
+  gulp.src('src/js/index.js')
+    .pipe(webpack(require('./webpack.config.js')))
     .pipe(gulp.dest('client/js'))
     .pipe(gulp.dest('docs/client/js'))
 })
