@@ -31,6 +31,7 @@ class Modal {
 
     this.overlay.addClass('is-active')
     this.element.addClass('is-active')
+    document.body.classList.add('is-active-overlay')
   }
 
   hide (e) {
@@ -39,6 +40,7 @@ class Modal {
 
       this.overlay.removeClass('is-active')
       this.element.removeClass('is-active')
+      document.body.classList.remove('is-active-overlay')
     }
 
     if (e.target === this.closeControl || e.target.closest('.modal--close')) {
@@ -46,6 +48,7 @@ class Modal {
 
       this.overlay.removeClass('is-active')
       this.element.removeClass('is-active')
+      document.body.classList.remove('is-active-overlay')
     }
   }
 

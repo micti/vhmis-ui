@@ -108,10 +108,12 @@ let appsMenu = document.querySelector('.page-menu');
 
 let openGlobalMenu = () => {
   appsMenu.classList.add('is-active');
+  document.body.classList.add('is-active-overlay');
 };
 
 let closeGlobalMenu = () => {
   appsMenu.classList.remove('is-active');
+  document.body.classList.remove('is-active-overlay');
 };
 
 function init() {
@@ -125,7 +127,7 @@ function init() {
   // Submenu open & close
   var submenusTrigger = document.querySelectorAll('.has-submenu > a');
 
-  document.addEventListener('click', function (event) {
+  document.body.addEventListener('click', function (event) {
     closeSubmenus(event.target);
   });
 
@@ -225,6 +227,7 @@ class Modal {
 
     this.overlay.addClass('is-active');
     this.element.addClass('is-active');
+    document.body.classList.add('is-active-overlay');
   }
 
   hide(e) {
@@ -233,6 +236,7 @@ class Modal {
 
       this.overlay.removeClass('is-active');
       this.element.removeClass('is-active');
+      document.body.classList.remove('is-active-overlay');
     }
 
     if (e.target === this.closeControl || e.target.closest('.modal--close')) {
@@ -240,6 +244,7 @@ class Modal {
 
       this.overlay.removeClass('is-active');
       this.element.removeClass('is-active');
+      document.body.classList.remove('is-active-overlay');
     }
   }
 

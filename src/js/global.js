@@ -8,10 +8,12 @@ let appsMenu = document.querySelector('.page-menu')
 
 let openGlobalMenu = () => {
   appsMenu.classList.add('is-active')
+  document.body.classList.add('is-active-overlay')
 }
 
 let closeGlobalMenu = () => {
   appsMenu.classList.remove('is-active')
+  document.body.classList.remove('is-active-overlay')
 }
 
 export default function init () {
@@ -25,7 +27,7 @@ export default function init () {
   // Submenu open & close
   var submenusTrigger = document.querySelectorAll('.has-submenu > a')
 
-  document.addEventListener('click', function (event) {
+  document.body.addEventListener('click', function (event) {
     closeSubmenus(event.target)
   })
 

@@ -186,6 +186,9 @@ body {
   .overlay.is-active {
     display: block; }
 
+body.is-active-overlay {
+  overflow: hidden !important; }
+
 .cols {
   margin-left: -16px;
   margin-right: -16px; }
