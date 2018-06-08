@@ -127,7 +127,13 @@ function init() {
   // Submenu open & close
   var submenusTrigger = document.querySelectorAll('.has-submenu > a');
 
-  document.body.addEventListener('click', function (event) {
+  if ('ontouchstart' in document.documentElement) {
+    document.addEventListener('touchstart', function (event) {
+      closeSubmenus(event.target);
+    });
+  }
+
+  document.addEventListener('click', function (event) {
     closeSubmenus(event.target);
   });
 
