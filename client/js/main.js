@@ -198,6 +198,11 @@ const DEFAULT_OPTIONS = {
   element: null
 };
 
+let MODAL_GLOBAL = {
+  total: 0,
+  init: false
+};
+
 class Modal {
   constructor(control, element, options) {
     options = _extends({}, DEFAULT_OPTIONS, options);
@@ -205,11 +210,14 @@ class Modal {
     this.control = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(control);
     this.element = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(element);
     this.options = options;
-    this.overlay = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])('#overlay');
+    this.overlay = null;
+    this.closeControl = this.element.element[0].querySelector('.modal--close');
 
     this._setEventListener();
 
-    console.log('Finish');
+    if (!MODAL_GLOBAL.init) {
+      this._initGlobal();
+    }
   }
 
   show(e) {
@@ -226,10 +234,17 @@ class Modal {
       this.overlay.removeClass('is-active');
       this.element.removeClass('is-active');
     }
+
+    if (e.target === this.closeControl || e.target.closest('.modal--close')) {
+      e.preventDefault();
+
+      this.overlay.removeClass('is-active');
+      this.element.removeClass('is-active');
+    }
   }
 
   _setEventListener() {
-    this.overlay.on('click', e => this.hide(e));
+    this.closeControl.addEventListener('click', e => this.hide(e));
 
     if (this.options.element !== null) {
       this.control.on(this.options.element, 'click', e => this.show(e));
@@ -237,6 +252,11 @@ class Modal {
     }
 
     this.control.on('click', e => this.show(e));
+  }
+
+  _initGlobal() {
+    this.overlay = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])('#overlay');
+    this.overlay.on('click', e => this.hide(e));
   }
 }
 
@@ -254,6 +274,8 @@ function Selector(selector) {
   this.query = selector;
   this.element = document.querySelectorAll(selector);
 }
+
+function find(selector) {}
 
 function addClass(name) {
   for (var el of this.element) {

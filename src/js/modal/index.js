@@ -5,7 +5,8 @@ const DEFAULT_OPTIONS = {
 }
 
 let MODAL_GLOBAL = {
-  total: 0
+  total: 0,
+  init: false
 }
 
 class Modal {
@@ -15,11 +16,14 @@ class Modal {
     this.control = selector(control)
     this.element = selector(element)
     this.options = options
-    this.overlay = selector('#overlay')
+    this.overlay = null
+    this.closeControl = this.element.element[0].querySelector('.modal--close')
 
     this._setEventListener()
 
-    console.log('Finish')
+    if (!MODAL_GLOBAL.init) {
+      this._initGlobal()
+    }
   }
 
   show (e) {
@@ -36,10 +40,17 @@ class Modal {
       this.overlay.removeClass('is-active')
       this.element.removeClass('is-active')
     }
+
+    if (e.target === this.closeControl || e.target.closest('.modal--close')) {
+      e.preventDefault()
+
+      this.overlay.removeClass('is-active')
+      this.element.removeClass('is-active')
+    }
   }
 
   _setEventListener () {
-    this.overlay.on('click', e => this.hide(e))
+    this.closeControl.addEventListener('click', e => this.hide(e))
 
     if (this.options.element !== null) {
       this.control.on(this.options.element, 'click', e => this.show(e))
@@ -47,6 +58,11 @@ class Modal {
     }
 
     this.control.on('click', e => this.show(e))
+  }
+
+  _initGlobal () {
+    this.overlay = selector('#overlay')
+    this.overlay.on('click', e => this.hide(e))
   }
 }
 
