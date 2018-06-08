@@ -9,6 +9,11 @@
     <link rel="stylesheet" type="text/css" media="screen" href="../client/css/main.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../client/css/example2.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script>
+      let vhmisApp = {
+        name: 'research'
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -133,9 +138,10 @@
           <ul>
             <li><a href="example1.html">example1</a></li>
             <li><a href="example2.html">example2</a></li>
-            <li class="is-active"><a href="example3.html">example3</a></li>
+            <li><a href="example3.html">example3</a></li>
             <li><a href="example4.html">example4</a></li>
-            <li><a href="example5.html">example4</a></li>
+            <li class="is-active"><a href="example5.html">Example 5: Modal</a></li>
+            <li><a id="modal-open" href="#">Open Modal</a></li>
           </ul>
         </nav>
         <h2 class="m-t-4 m-b-4">Cards</h2>
@@ -149,8 +155,8 @@
         </div>
       </div>
     </div>
-    <div class="overlay is-active">
-      <div class="modal is-active">
+    <div id="overlay" class="overlay">
+      <div id="modal" class="modal">
         <span class="modal--close icon"><i class="fas fa-times"></i></span>
         <div class="container" style="height: 1000px; background-color: antiquewhite">Modal Content</div>
       </div>
