@@ -97,19 +97,24 @@ document.addEventListener('DOMContentLoaded', function () {
 // Element.closest()
 // Element.classList.toggle()
 
-function init() {
-  var appsOpenIcon = document.querySelector('.extra-menu--apps-icon.open-button')
-  var appsCloseIcon = document.querySelector('.extra-menu--apps-icon.close-button')
-  var appsMenu = document.querySelector('.page-menu')
+let appsOpenIcon = document.querySelector('.extra-menu--apps-open-icon')
+let appsCloseIcon = document.querySelector('.page-menu--apps-close-icon')
+let appsMenu = document.querySelector('.page-menu')
+
+let openGlobalMenu = () => {
+  appsMenu.classList.add('is-active')
+}
+
+let closeGlobalMenu = () => {
+  appsMenu.classList.remove('is-active')
+}
+
+function init () {
   appsOpenIcon.addEventListener('click', function (e) {
-    appsMenu.classList.toggle('is-active')
-    appsOpenIcon.classList.toggle('is-active')
-    appsCloseIcon.classList.toggle('is-active')
+    openGlobalMenu()
   })
   appsCloseIcon.addEventListener('click', function (e) {
-    appsMenu.classList.toggle('is-active')
-    appsOpenIcon.classList.toggle('is-active')
-    appsCloseIcon.classList.toggle('is-active')
+    closeGlobalMenu()
   })
 
   // Submenu open & close
@@ -127,7 +132,7 @@ function init() {
   })
 
   function closeSubmenus (target) {
-    var parent = target.closest('.has-submenu')
+    var parent = !target ? null : target.closest('.has-submenu')
     submenusTrigger.forEach(function (el) {
       el = el.closest('.has-submenu')
       if (parent !== null && parent === el) {
@@ -135,6 +140,15 @@ function init() {
       }
       el.classList.remove('is-active')
     })
+  }
+
+  // Esc key to close all submenu and global menu
+  document.onkeydown = function (evt) {
+    evt = evt || window.event
+    if (evt.keyCode === 27) {
+      closeGlobalMenu()
+      closeSubmenus(null)
+    }
   }
 }
 

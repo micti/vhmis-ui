@@ -4,7 +4,7 @@ $page-menu-background-color-hover: $indigo-50;
 
 .page-menu {
   position: fixed;
-  top: 50px;
+  top: 0;
   width: 100%;
   height: 0;
   overflow-y: auto;
@@ -23,14 +23,27 @@ $page-menu-background-color-hover: $indigo-50;
   }
 }
 
+.page-menu--apps-close-icon {
+  position: absolute;
+  top : 1px;
+  right: 16px;
+  width: 40px;
+  height: 41px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+}
+
 .apps-menu {
   background-color: $apps-menu-background-color;
   color: #fff;
 }
 
 .apps-menu--wrapper {
-  margin: 0 16px;
-  width: calc(100% - 32px);
+  margin: 0 56px 0 16px;
+  width: calc(100% - 72px);
 }
 
 .apps-menu--title {
@@ -148,18 +161,13 @@ $page-menu-background-color-hover: $indigo-50;
   line-height: 1;
 }
 
-.extra-menu--apps-icon {
+.extra-menu--apps-open-icon {
   width: 50px;
   height: 50px;
   text-align: center;
   cursor: pointer;
   padding-top: 18px;
   border-right: 1px solid #ddd;
-  display: none;
-
-  &.is-active {
-    display: block;
-  }
 }
 
 .extra-menu--extra-text {
