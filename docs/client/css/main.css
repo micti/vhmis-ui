@@ -2209,6 +2209,11 @@ h5, h6 {
       text-decoration: none;
       cursor: inherit; }
 
+.tab-content {
+  display: none !important; }
+  .tab-content.is-active {
+    display: block !important; }
+
 .dropdown {
   display: inline-flex;
   position: relative;

@@ -70,213 +70,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(2);
-
-
-
-document.addEventListener('DOMContentLoaded', function () {
-  Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])();
-
-  if (typeof vhmisApp === 'object') {
-    __WEBPACK_IMPORTED_MODULE_1__app__["a" /* default */][vhmisApp.name]();
-  }
-});
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = init;
-// Polyfill check
-// Element.closest()
-// Element.classList.toggle()
-
-let appsOpenIcon = document.querySelector('.extra-menu--apps-open-icon');
-let appsCloseIcon = document.querySelector('.page-menu--apps-close-icon');
-let appsMenu = document.querySelector('.page-menu');
-
-let openGlobalMenu = () => {
-  appsMenu.classList.add('is-active');
-  document.body.classList.add('is-active-overlay');
-};
-
-let closeGlobalMenu = () => {
-  appsMenu.classList.remove('is-active');
-  document.body.classList.remove('is-active-overlay');
-};
-
-function init() {
-  appsOpenIcon.addEventListener('click', function (e) {
-    openGlobalMenu();
-  });
-  appsCloseIcon.addEventListener('click', function (e) {
-    closeGlobalMenu();
-  });
-
-  // Submenu open & close
-  var submenusTrigger = document.querySelectorAll('.has-submenu > a');
-
-  if ('ontouchstart' in document.documentElement) {
-    document.addEventListener('touchstart', function (event) {
-      closeSubmenus(event.target);
-    });
-  }
-
-  document.addEventListener('click', function (event) {
-    closeSubmenus(event.target);
-  });
-
-  submenusTrigger.forEach(function (el) {
-    el.addEventListener('click', function (event) {
-      event.preventDefault();
-      el.closest('.has-submenu').classList.add('is-active');
-    });
-  });
-
-  function closeSubmenus(target) {
-    var parent = !target ? null : target.closest('.has-submenu');
-    submenusTrigger.forEach(function (el) {
-      el = el.closest('.has-submenu');
-      if (parent !== null && parent === el) {
-        return;
-      }
-      el.classList.remove('is-active');
-    });
-  }
-
-  // Esc key to close all submenu and global menu
-  document.onkeydown = function (evt) {
-    evt = evt || window.event;
-    if (evt.keyCode === 27) {
-      closeGlobalMenu();
-      closeSubmenus(null);
-    }
-  };
-}
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__research__ = __webpack_require__(3);
-
-
-let apps = {
-  research: __WEBPACK_IMPORTED_MODULE_0__research__["a" /* default */]
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (apps);
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modal__ = __webpack_require__(4);
-
-
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-  Object(__WEBPACK_IMPORTED_MODULE_0__modal__["a" /* default */])('#modal-open', '#modal', {});
-  console.log('call app init research');
-});
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_selector__ = __webpack_require__(5);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-
-
-const DEFAULT_OPTIONS = {
-  element: null
-};
-
-let MODAL_GLOBAL = {
-  total: 0,
-  init: false
-};
-
-class Modal {
-  constructor(control, element, options) {
-    options = _extends({}, DEFAULT_OPTIONS, options);
-
-    this.control = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(control);
-    this.element = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(element);
-    this.options = options;
-    this.overlay = null;
-    this.closeControl = this.element.element[0].querySelector('.modal--close');
-
-    this._setEventListener();
-
-    if (!MODAL_GLOBAL.init) {
-      this._initGlobal();
-    }
-  }
-
-  show(e) {
-    e.preventDefault();
-
-    this.overlay.addClass('is-active');
-    this.element.addClass('is-active');
-    document.body.classList.add('is-active-overlay');
-  }
-
-  hide(e) {
-    if (e.target.id === 'overlay') {
-      e.preventDefault();
-
-      this.overlay.removeClass('is-active');
-      this.element.removeClass('is-active');
-      document.body.classList.remove('is-active-overlay');
-    }
-
-    if (e.target === this.closeControl || e.target.closest('.modal--close')) {
-      e.preventDefault();
-
-      this.overlay.removeClass('is-active');
-      this.element.removeClass('is-active');
-      document.body.classList.remove('is-active-overlay');
-    }
-  }
-
-  _setEventListener() {
-    this.closeControl.addEventListener('click', e => this.hide(e));
-
-    if (this.options.element !== null) {
-      this.control.on(this.options.element, 'click', e => this.show(e));
-      return;
-    }
-
-    this.control.on('click', e => this.show(e));
-  }
-
-  _initGlobal() {
-    this.overlay = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])('#overlay');
-    this.overlay.on('click', e => this.hide(e));
-  }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (function (control, element, options) {
-  return new Modal(control, element, options);
-});
-
-/***/ }),
-/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -460,6 +258,287 @@ Selector.prototype = {
 
 /* harmony default export */ __webpack_exports__["a"] = (function (selector) {
   return new Selector(selector);
+});
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(3);
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  Object(__WEBPACK_IMPORTED_MODULE_0__global__["a" /* default */])();
+
+  if (typeof vhmisApp === 'object') {
+    __WEBPACK_IMPORTED_MODULE_1__app__["a" /* default */][vhmisApp.name]();
+  }
+});
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = init;
+// Polyfill check
+// Element.closest()
+// Element.classList.toggle()
+
+let appsOpenIcon = document.querySelector('.extra-menu--apps-open-icon');
+let appsCloseIcon = document.querySelector('.page-menu--apps-close-icon');
+let appsMenu = document.querySelector('.page-menu');
+
+let openGlobalMenu = () => {
+  appsMenu.classList.add('is-active');
+  document.body.classList.add('is-active-overlay');
+};
+
+let closeGlobalMenu = () => {
+  appsMenu.classList.remove('is-active');
+  document.body.classList.remove('is-active-overlay');
+};
+
+function init() {
+  appsOpenIcon.addEventListener('click', function (e) {
+    openGlobalMenu();
+  });
+  appsCloseIcon.addEventListener('click', function (e) {
+    closeGlobalMenu();
+  });
+
+  // Submenu open & close
+  var submenusTrigger = document.querySelectorAll('.has-submenu > a');
+
+  if ('ontouchstart' in document.documentElement) {
+    document.addEventListener('touchstart', function (event) {
+      closeSubmenus(event.target);
+    });
+  }
+
+  document.addEventListener('click', function (event) {
+    closeSubmenus(event.target);
+  });
+
+  submenusTrigger.forEach(function (el) {
+    el.addEventListener('click', function (event) {
+      event.preventDefault();
+      el.closest('.has-submenu').classList.add('is-active');
+    });
+  });
+
+  function closeSubmenus(target) {
+    var parent = !target ? null : target.closest('.has-submenu');
+    submenusTrigger.forEach(function (el) {
+      el = el.closest('.has-submenu');
+      if (parent !== null && parent === el) {
+        return;
+      }
+      el.classList.remove('is-active');
+    });
+  }
+
+  // Esc key to close all submenu and global menu
+  document.onkeydown = function (evt) {
+    evt = evt || window.event;
+    if (evt.keyCode === 27) {
+      closeGlobalMenu();
+      closeSubmenus(null);
+    }
+  };
+}
+
+/***/ }),
+/* 3 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__research__ = __webpack_require__(4);
+
+
+let apps = {
+  research: __WEBPACK_IMPORTED_MODULE_0__research__["a" /* default */]
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (apps);
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_modal__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_tab__ = __webpack_require__(6);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+  Object(__WEBPACK_IMPORTED_MODULE_0__lib_modal__["a" /* default */])('#modal-open', '#modal', {});
+  Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs', {});
+
+  console.log('call app init research');
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_selector__ = __webpack_require__(0);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+const DEFAULT_OPTIONS = {
+  element: null
+};
+
+let MODAL_GLOBAL = {
+  total: 0,
+  init: false
+};
+
+class Modal {
+  constructor(control, element, options) {
+    options = _extends({}, DEFAULT_OPTIONS, options);
+
+    this.control = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(control);
+    this.element = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(element);
+    this.options = options;
+    this.overlay = null;
+    this.closeControl = this.element.element[0].querySelector('.modal--close');
+
+    this._setEventListener();
+
+    if (!MODAL_GLOBAL.init) {
+      this._initGlobal();
+    }
+  }
+
+  show(e) {
+    e.preventDefault();
+
+    this.overlay.addClass('is-active');
+    this.element.addClass('is-active');
+    document.body.classList.add('is-active-overlay');
+  }
+
+  hide(e) {
+    if (e.target.id === 'overlay') {
+      e.preventDefault();
+
+      this.overlay.removeClass('is-active');
+      this.element.removeClass('is-active');
+      document.body.classList.remove('is-active-overlay');
+    }
+
+    if (e.target === this.closeControl || e.target.closest('.modal--close')) {
+      e.preventDefault();
+
+      this.overlay.removeClass('is-active');
+      this.element.removeClass('is-active');
+      document.body.classList.remove('is-active-overlay');
+    }
+  }
+
+  _setEventListener() {
+    this.closeControl.addEventListener('click', e => this.hide(e));
+
+    if (this.options.element !== null) {
+      this.control.on(this.options.element, 'click', e => this.show(e));
+      return;
+    }
+
+    this.control.on('click', e => this.show(e));
+  }
+
+  _initGlobal() {
+    this.overlay = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])('#overlay');
+    this.overlay.on('click', e => this.hide(e));
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function (control, element, options) {
+  return new Modal(control, element, options);
+});
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_selector__ = __webpack_require__(0);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+const DEFAULT_OPTIONS = {
+  tabSelector: '.tab'
+};
+
+class Tab {
+  constructor(element, options) {
+    options = _extends({}, DEFAULT_OPTIONS, options);
+
+    this.element = Object(__WEBPACK_IMPORTED_MODULE_0__util_selector__["a" /* default */])(element);
+    this.options = options;
+    this.tabs = this.element.element[0].querySelectorAll(this.options.tabSelector);
+    this.currentTab = null;
+    this.currentTabContent = null;
+
+    this._init();
+    this._setEventListener();
+  }
+
+  change(e) {
+    e.preventDefault();
+    let tab = e.target.closest(this.options.tabSelector);
+
+    this.currentTab.classList.remove('is-active');
+    this.currentTabContent.classList.remove('is-active');
+
+    this.currentTab = tab;
+    this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'));
+    this.currentTab.classList.add('is-active');
+    this.currentTabContent.classList.add('is-active');
+  }
+
+  _init() {
+    for (const tab of this.tabs) {
+      let contentId = tab.getAttribute('data-contentid');
+      let tabContent = document.getElementById(contentId);
+
+      if (tab.classList.contains('is-active')) {
+        tabContent.classList.add('is-active');
+        this.currentTab = tab;
+        this.currentTabContent = tabContent;
+        continue;
+      }
+
+      tabContent.classList.remove('is-active');
+    }
+
+    if (this.currentTab === null) {
+      this.currentTab = this.tabs[0];
+      this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'));
+      this.currentTabContent.classList.add('is-active');
+      this.currentTab.classList.add('is-active');
+    }
+  }
+
+  _setEventListener() {
+    for (const tab of this.tabs) {
+      tab.addEventListener('click', e => this.change(e));
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function (element, options) {
+  return new Tab(element, options);
 });
 
 /***/ })

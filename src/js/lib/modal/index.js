@@ -1,4 +1,4 @@
-import selector from '../util/selector'
+import selector from '../../util/selector'
 
 const DEFAULT_OPTIONS = {
   element: null

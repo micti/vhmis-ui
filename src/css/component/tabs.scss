@@ -36,3 +36,11 @@
     }
   }
 }
+
+.tab-content {
+  display: none !important;
+
+  &.is-active {
+    display: block !important;
+  }
+}

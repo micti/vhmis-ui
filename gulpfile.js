@@ -20,7 +20,7 @@ const cssFile = [
 ]
 
 gulp.task('watch', () => {
-  gulp.watch('src/js/**/*.js', ['js'])
+  gulp.watch('src/js/**/**/*.js', ['js'])
   gulp.watch('src/css/**/*.scss', ['css'])
 })
 

@@ -5,3 +5,8 @@
 .cols.is-red .col p {
   background-color: red;
 }
+
+.tab-content {
+  background: #fff;
+  padding: 1rem;
+}
