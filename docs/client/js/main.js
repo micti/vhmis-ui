@@ -583,6 +583,13 @@ class Tab {
       if (tab.classList.contains('is-active')) {
         this.defaultTab = tab;
         this.open(tab, false);
+        break;
+      }
+
+      if (tab.getAttribute('data-contentdisplayurl') === window.location.pathname) {
+        this.defaultTab = tab;
+        this.open(tab, false);
+        break;
       }
     }
 
