@@ -379,6 +379,9 @@ let apps = {
 /* harmony default export */ __webpack_exports__["a"] = (function () {
   Object(__WEBPACK_IMPORTED_MODULE_0__lib_modal__["a" /* default */])('#modal-open', '#modal', {});
   Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs', {});
+  Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs-2', {
+    history: true
+  });
 
   console.log('call app init research');
 });
@@ -479,7 +482,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 const DEFAULT_OPTIONS = {
-  tabSelector: '.tab'
+  tabSelector: '.tab',
+  history: false
+};
+
+let TAB_GLOBAL = {
+  setTab: state => {
+    let contentid = state.contentid;
+    let tabname = state.tabName;
+    TAB_GLOBAL.tabIns[tabname].changeByName(contentid);
+  },
+  tabIns: {},
+  count: 1,
+  init: false
 };
 
 class Tab {
@@ -491,18 +506,34 @@ class Tab {
     this.tabs = this.element.element[0].querySelectorAll(this.options.tabSelector);
     this.currentTab = null;
     this.currentTabContent = null;
+    this.defaultTab = null;
+    this.tabName = "tabs" + TAB_GLOBAL.count;
 
     this._init();
+
+    TAB_GLOBAL.count++;
+    TAB_GLOBAL.tabIns[this.tabName] = this;
+    if (!TAB_GLOBAL.init) {
+      this._historyEvent();
+    }
   }
 
   change(e) {
     e.preventDefault();
     let tab = e.target.closest(this.options.tabSelector);
 
-    this.open(tab);
+    this.open(tab, true);
   }
 
-  open(tab) {
+  changeByName(contentName, setState = false) {
+    for (const tab of this.tabs) {
+      if (tab.getAttribute('data-contentid') === contentName) {
+        return this.open(tab, setState);
+      }
+    }
+  }
+
+  open(tab, setState = false) {
     if (this.currentTab !== null) {
       this.currentTab.classList.remove('is-active');
       this.currentTabContent.classList.remove('is-active');
@@ -515,6 +546,7 @@ class Tab {
 
     let contentUrl = this.currentTab.getAttribute('data-contenturl');
     let contentLoaded = this.currentTab.getAttribute('data-contentloaded');
+    let contentDisplayUrl = this.currentTab.getAttribute('data-contentdisplayurl');
 
     if (contentUrl !== null && contentLoaded !== '1') {
       fetch(contentUrl).then(__WEBPACK_IMPORTED_MODULE_1__util_fetch__["a" /* checkErrorResponse */]).then(res => {
@@ -522,10 +554,25 @@ class Tab {
       }).then(data => {
         this.currentTabContent.innerHTML = data;
         this.currentTab.setAttribute('data-contentloaded', '1');
+        if (this.options.history && setState) {
+          history.pushState({
+            tabName: this.tabName,
+            contentid: this.currentTab.getAttribute('data-contentid')
+          }, 'A', contentDisplayUrl);
+        }
       }).catch(e => {
         console.log(e);
         this.currentTabContent.innerHTML = 'Lỗi';
       });
+
+      return;
+    }
+
+    if (this.options.history && setState) {
+      history.pushState({
+        tabName: this.tabName,
+        contentid: this.currentTab.getAttribute('data-contentid')
+      }, null, contentDisplayUrl);
     }
   }
 
@@ -534,13 +581,34 @@ class Tab {
       tab.addEventListener('click', e => this.change(e));
 
       if (tab.classList.contains('is-active')) {
-        this.open(tab);
+        this.defaultTab = tab;
+        this.open(tab, false);
       }
     }
 
     if (this.currentTab === null) {
-      this.open(this.tabs[0]);
+      this.defaultTab = this.tabs[0];
+      this.open(this.tabs[0], false);
     }
+
+    if (this.options.history) {
+      window.addEventListener('popstate', e => this._checkBack(e));
+    }
+  }
+
+  _checkBack(e) {
+    if (e.state === null) {
+      this.open(this.defaultTab, false);
+    }
+  }
+
+  _historyEvent() {
+    TAB_GLOBAL.init = true;
+    window.addEventListener('popstate', e => {
+      if (e.state !== null && e.state.tabName !== null) {
+        TAB_GLOBAL.setTab(e.state);
+      }
+    });
   }
 }
 
