@@ -15,15 +15,20 @@ class Tab {
     this.currentTabContent = null
 
     this._init()
-    this._setEventListener()
   }
 
   change (e) {
     e.preventDefault()
     let tab = e.target.closest(this.options.tabSelector)
 
-    this.currentTab.classList.remove('is-active')
-    this.currentTabContent.classList.remove('is-active')
+    this.open(tab)
+  }
+
+  open (tab) {
+    if (this.currentTab !== null) {
+      this.currentTab.classList.remove('is-active')
+      this.currentTabContent.classList.remove('is-active')
+    }
 
     this.currentTab = tab
     this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'))
@@ -33,30 +38,15 @@ class Tab {
 
   _init () {
     for (const tab of this.tabs) {
-      let contentId = tab.getAttribute('data-contentid')
-      let tabContent = document.getElementById(contentId)
+      tab.addEventListener('click', e => this.change(e))
 
       if (tab.classList.contains('is-active')) {
-        tabContent.classList.add('is-active')
-        this.currentTab = tab
-        this.currentTabContent = tabContent
-        continue
+        this.open(tab)
       }
-
-      tabContent.classList.remove('is-active')
     }
 
     if (this.currentTab === null) {
-      this.currentTab = this.tabs[0]
-      this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'))
-      this.currentTabContent.classList.add('is-active')
-      this.currentTab.classList.add('is-active')
-    }
-  }
-
-  _setEventListener () {
-    for (const tab of this.tabs) {
-      tab.addEventListener('click', e => this.change(e))
+      this.open(this.tabs[0])
     }
   }
 }
