@@ -472,7 +472,9 @@ class Modal {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_selector__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_fetch__ = __webpack_require__(7);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -491,48 +493,53 @@ class Tab {
     this.currentTabContent = null;
 
     this._init();
-    this._setEventListener();
   }
 
   change(e) {
     e.preventDefault();
     let tab = e.target.closest(this.options.tabSelector);
 
-    this.currentTab.classList.remove('is-active');
-    this.currentTabContent.classList.remove('is-active');
+    this.open(tab);
+  }
+
+  open(tab) {
+    if (this.currentTab !== null) {
+      this.currentTab.classList.remove('is-active');
+      this.currentTabContent.classList.remove('is-active');
+    }
 
     this.currentTab = tab;
     this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'));
     this.currentTab.classList.add('is-active');
     this.currentTabContent.classList.add('is-active');
+
+    let contentUrl = this.currentTab.getAttribute('data-contenturl');
+    let contentLoaded = this.currentTab.getAttribute('data-contentloaded');
+
+    if (contentUrl !== null && contentLoaded !== '1') {
+      fetch(contentUrl).then(__WEBPACK_IMPORTED_MODULE_1__util_fetch__["a" /* checkErrorResponse */]).then(res => {
+        return res.text();
+      }).then(data => {
+        this.currentTabContent.innerHTML = data;
+        this.currentTab.setAttribute('data-contentloaded', '1');
+      }).catch(e => {
+        console.log(e);
+        this.currentTabContent.innerHTML = 'Lỗi';
+      });
+    }
   }
 
   _init() {
     for (const tab of this.tabs) {
-      let contentId = tab.getAttribute('data-contentid');
-      let tabContent = document.getElementById(contentId);
+      tab.addEventListener('click', e => this.change(e));
 
       if (tab.classList.contains('is-active')) {
-        tabContent.classList.add('is-active');
-        this.currentTab = tab;
-        this.currentTabContent = tabContent;
-        continue;
+        this.open(tab);
       }
-
-      tabContent.classList.remove('is-active');
     }
 
     if (this.currentTab === null) {
-      this.currentTab = this.tabs[0];
-      this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'));
-      this.currentTabContent.classList.add('is-active');
-      this.currentTab.classList.add('is-active');
-    }
-  }
-
-  _setEventListener() {
-    for (const tab of this.tabs) {
-      tab.addEventListener('click', e => this.change(e));
+      this.open(this.tabs[0]);
     }
   }
 }
@@ -540,6 +547,24 @@ class Tab {
 /* harmony default export */ __webpack_exports__["a"] = (function (element, options) {
   return new Tab(element, options);
 });
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkErrorResponse;
+// Một số hàm hỗ trợ thêm cho request qua fetch API
+
+function checkErrorResponse(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
 
 /***/ })
 /******/ ]);

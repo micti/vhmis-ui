@@ -1,4 +1,5 @@
 import selector from '../../util/selector'
+import { checkErrorResponse } from '../../util/fetch'
 
 const DEFAULT_OPTIONS = {
   tabSelector: '.tab'
@@ -34,6 +35,25 @@ class Tab {
     this.currentTabContent = document.getElementById(this.currentTab.getAttribute('data-contentid'))
     this.currentTab.classList.add('is-active')
     this.currentTabContent.classList.add('is-active')
+
+    let contentUrl = this.currentTab.getAttribute('data-contenturl')
+    let contentLoaded = this.currentTab.getAttribute('data-contentloaded')
+
+    if (contentUrl !== null && contentLoaded !== '1') {
+      fetch(contentUrl)
+        .then(checkErrorResponse)
+        .then(res => {
+          return res.text()
+        })
+        .then(data => {
+          this.currentTabContent.innerHTML = data
+          this.currentTab.setAttribute('data-contentloaded', '1')
+        })
+        .catch(e => {
+          console.log(e)
+          this.currentTabContent.innerHTML = 'Lỗi'
+        })
+    }
   }
 
   _init () {
