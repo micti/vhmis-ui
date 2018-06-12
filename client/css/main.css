@@ -2349,6 +2349,22 @@ h5, h6 {
     .modal--close-button {
       display: none; } }
 
+.token--list {
+  display: flex; }
+  .token--list li {
+    border: 1px solid #ccc;
+    background: #ddd;
+    margin-right: 0.25rem;
+    border-radius: 4px;
+    padding: 0px 2px;
+    cursor: default; }
+    .token--list li span {
+      cursor: pointer; }
+
+.token--input {
+  border: 0;
+  outline: none; }
+
 .m-r-4 {
   margin-right: 16px; }
 

@@ -372,6 +372,8 @@ let apps = {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_modal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_tab__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_token__ = __webpack_require__(8);
+
 
 
 
@@ -382,6 +384,8 @@ let apps = {
   Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs-2', {
     history: true
   });
+
+  Object(__WEBPACK_IMPORTED_MODULE_2__lib_token__["a" /* default */])(document.getElementById('test-token'), {});
 
   console.log('call app init research');
 });
@@ -688,6 +692,57 @@ function checkErrorResponse(response) {
     throw error;
   }
 }
+
+/***/ }),
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class Token {
+  constructor(element, options) {
+    this.element = element;
+    this.options = options;
+
+    this._init();
+    this._addEventListerner();
+
+    // Khởi tạo
+  }
+
+  showDropdown(e) {}
+
+  _init() {
+    // ẩn input thiệt
+    this.element.style['display'] = 'none';
+
+    // tạo token
+    this.token = document.createElement('div');
+    this.token.classList.add('token');
+    this.token.classList.add('input');
+    this.element.parentNode.insertBefore(this.token, this.element.nextSibling);
+
+    // tạo token list
+    this.tokenList = document.createElement('ul');
+    this.tokenList.classList.add('token--list');
+    this.token.appendChild(this.tokenList);
+
+    // tạo input giả
+    this.tokenInput = document.createElement('input');
+    this.tokenInput.setAttribute('type', 'text');
+    this.tokenInput.setAttribute('placeholder', 'Type and search');
+    this.tokenInput.classList.add('token--input');
+    this.token.appendChild(this.tokenInput);
+  }
+
+  _addEventListerner() {
+    //this.element.addEventListerner('focus', e => this.showDropdown(e))
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (function (element, options) {
+  return new Token(element, options);
+});
 
 /***/ })
 /******/ ]);
