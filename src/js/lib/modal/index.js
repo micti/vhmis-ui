@@ -94,7 +94,17 @@ class Modal {
   }
 
   static hideGlobal(e) {
-    if (e.target.id === 'overlay' || e.keyCode === 27 && MODAL_GLOBAL.modalStack.length > 0) {
+    if (MODAL_GLOBAL.modalStack.length === 0) {
+      return
+    }
+
+    // Bỏ qua nếu là element phát sinh là input, textarea
+    if (e.target.tagName  === 'INPUT' || e.target.tagName  === 'TEXTAREA') {
+      return
+    }
+
+    if (e.target.id === 'overlay' || e.keyCode === 27) {
+      console.log(e)
       let currentOpenedModal = MODAL_GLOBAL.modalStack.pop()
       currentOpenedModal.hide()
 
