@@ -378,6 +378,7 @@ let apps = {
 
 /* harmony default export */ __webpack_exports__["a"] = (function () {
   Object(__WEBPACK_IMPORTED_MODULE_0__lib_modal__["a" /* default */])('#modal-open', '#modal', {});
+  Object(__WEBPACK_IMPORTED_MODULE_0__lib_modal__["a" /* default */])('#othermodalbutton', '#othermodal', {});
   Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs', {});
   Object(__WEBPACK_IMPORTED_MODULE_1__lib_tab__["a" /* default */])('#tabs-2', {
     history: true
