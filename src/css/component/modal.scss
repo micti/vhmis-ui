@@ -1,5 +1,5 @@
 .modal {
-  position: static;
+  //position: static;
   float: right;
   width: 100%;
   background: #ffffff;
@@ -31,7 +31,7 @@
   }
 }
 
-.modal--close {
+.modal--close-button {
   position: fixed;
   right: 15px;
   top: 5px;

@@ -56,11 +56,10 @@ export default function init () {
   }
 
   // Esc key to close all submenu and global menu
-  document.onkeydown = function (evt) {
-    evt = evt || window.event
-    if (evt.keyCode === 27) {
+  document.addEventListener('keydown', e => {
+    if (e.keyCode === 27) {
       closeGlobalMenu()
       closeSubmenus(null)
     }
-  }
+  })
 }

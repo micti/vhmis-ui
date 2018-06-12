@@ -5,8 +5,16 @@ const DEFAULT_OPTIONS = {
 }
 
 let MODAL_GLOBAL = {
-  total: 0,
-  init: false
+  init: false,
+  modalStack: [],
+  openOverlay: () => {
+    document.getElementById('overlay').classList.add('is-active')
+    document.body.classList.add('is-active-overlay')
+  },
+  closeOverlay: () => {
+    document.getElementById('overlay').classList.remove('is-active')
+    document.body.classList.remove('is-active-overlay')
+  }
 }
 
 class Modal {
@@ -16,8 +24,8 @@ class Modal {
     this.control = selector(control)
     this.element = selector(element)
     this.options = options
-    this.overlay = null
-    this.closeControl = this.element.element[0].querySelector('.modal--close')
+
+    this.closeControl = this.element.element[0].querySelectorAll('.modal--close')
 
     this._setEventListener()
 
@@ -26,46 +34,76 @@ class Modal {
     }
   }
 
-  show (e) {
+  showEvent (e) {
     e.preventDefault()
 
-    this.overlay.addClass('is-active')
-    this.element.addClass('is-active')
-    document.body.classList.add('is-active-overlay')
+    if (MODAL_GLOBAL.modalStack.length > 0) {
+      MODAL_GLOBAL.modalStack[MODAL_GLOBAL.modalStack.length - 1].hide()
+    } else {
+      MODAL_GLOBAL.openOverlay()
+    }
+
+    this.show()
+    MODAL_GLOBAL.modalStack.push(this)
   }
 
-  hide (e) {
-    if (e.target.id === 'overlay') {
-      e.preventDefault()
-
-      this.overlay.removeClass('is-active')
-      this.element.removeClass('is-active')
-      document.body.classList.remove('is-active-overlay')
-    }
-
+  hideEvent (e) {
     if (e.target === this.closeControl || e.target.closest('.modal--close')) {
       e.preventDefault()
-
-      this.overlay.removeClass('is-active')
-      this.element.removeClass('is-active')
-      document.body.classList.remove('is-active-overlay')
+      this.hide()
+      this._hide()
     }
+  }
+
+  _hide() {
+    MODAL_GLOBAL.modalStack.pop()
+
+    if (MODAL_GLOBAL.modalStack.length === 0) {
+      return MODAL_GLOBAL.closeOverlay()
+    }
+
+    MODAL_GLOBAL.modalStack[MODAL_GLOBAL.modalStack.length - 1].show()
+  }
+
+  hide() {
+    this.element.removeClass('is-active')
+  }
+
+  show() {
+    this.element.addClass('is-active')
   }
 
   _setEventListener () {
-    this.closeControl.addEventListener('click', e => this.hide(e))
+    for (const closeControl of this.closeControl) {
+      closeControl.addEventListener('click', e => this.hideEvent(e))
+    }
 
     if (this.options.element !== null) {
-      this.control.on(this.options.element, 'click', e => this.show(e))
+      this.control.on(this.options.element, 'click', e => this.showEvent(e))
       return
     }
 
-    this.control.on('click', e => this.show(e))
+    this.control.on('click', e => this.showEvent(e))
   }
 
   _initGlobal () {
-    this.overlay = selector('#overlay')
-    this.overlay.on('click', e => this.hide(e))
+    document.getElementById('overlay').addEventListener('click', e => Modal.hideGlobal(e))
+    document.addEventListener('keydown', e => Modal.hideGlobal(e))
+
+    MODAL_GLOBAL.init = true
+  }
+
+  static hideGlobal(e) {
+    if (e.target.id === 'overlay' || e.keyCode === 27 && MODAL_GLOBAL.modalStack.length > 0) {
+      let currentOpenedModal = MODAL_GLOBAL.modalStack.pop()
+      currentOpenedModal.hide()
+
+      if (MODAL_GLOBAL.modalStack.length === 0) {
+        return MODAL_GLOBAL.closeOverlay()
+      }
+
+      MODAL_GLOBAL.modalStack[MODAL_GLOBAL.modalStack.length - 1].show()
+    }
   }
 }
 

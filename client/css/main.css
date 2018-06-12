@@ -2313,7 +2313,6 @@ h5, h6 {
     box-shadow: none; }
 
 .modal {
-  position: static;
   float: right;
   width: 100%;
   background: #ffffff;
@@ -2338,7 +2337,7 @@ h5, h6 {
     .modal {
       width: 800px; } }
 
-.modal--close {
+.modal--close-button {
   position: fixed;
   right: 15px;
   top: 5px;
@@ -2347,7 +2346,7 @@ h5, h6 {
   background-color: #ddd;
   border-radius: 4px; }
   @media screen and (min-width: 769px) {
-    .modal--close {
+    .modal--close-button {
       display: none; } }
 
 .m-r-4 {
