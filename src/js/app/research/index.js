@@ -10,7 +10,10 @@ export default function () {
     history: true
   })
 
-  token(document.getElementById('test-token'), {})
+  let tokenTest = token(document.getElementById('test-token'), {})
+  document.getElementById('get-token-value').addEventListener('click', e => {
+    window.alert(tokenTest.getValue())
+  })
 
   console.log('call app init research')
 }

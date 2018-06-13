@@ -385,7 +385,10 @@ let apps = {
     history: true
   });
 
-  Object(__WEBPACK_IMPORTED_MODULE_2__lib_token__["a" /* default */])(document.getElementById('test-token'), {});
+  let tokenTest = Object(__WEBPACK_IMPORTED_MODULE_2__lib_token__["a" /* default */])(document.getElementById('test-token'), {});
+  document.getElementById('get-token-value').addEventListener('click', e => {
+    window.alert(tokenTest.getValue());
+  });
 
   console.log('call app init research');
 });
@@ -701,7 +704,8 @@ function checkErrorResponse(response) {
 const KEY = {
   up: 38,
   down: 40,
-  enter: 13
+  enter: 13,
+  esc: 27
 };
 
 class Token {
@@ -731,9 +735,13 @@ class Token {
       name: '1A2222BC'
     }];
 
-    this._init();
-
     // Khởi tạo
+    this._init();
+  }
+
+  // Lấy giá trị
+  getValue() {
+    return this.element.value;
   }
 
   // Khi người dùng focus vào input giả
@@ -761,7 +769,7 @@ class Token {
   addItem(data) {
     // Bỏ qua nếu đã chọn rồi
     if (this.value.find(value => {
-      return data.id == value;
+      return data.id.toString() === value.toString();
     })) {
       return;
     }
@@ -771,14 +779,13 @@ class Token {
     this.tokenList.appendChild(item);
 
     this.value.push(data.id);
-    this.element.value = this.data.join(',');
+    this.element.value = this.value.join(',');
 
     this.tokenInput.value = '';
     this._clearSuggestion();
   }
 
   keydown(e) {
-
     if (e.keyCode === KEY.up) {
       return this._selectUp();
     }
@@ -791,7 +798,7 @@ class Token {
       return this._addItemFromSelect();
     }
 
-    this.tokenSuggestion.innerHTML = "Bạn cứ gõ tiếp đi";
+    this.tokenSuggestion.innerHTML = 'Bạn cứ gõ tiếp đi';
     let search = this.tokenInput.value;
 
     this._search(search);
@@ -909,7 +916,6 @@ class Token {
       e.preventDefault();
     });
     this.tokenSuggestion.addEventListener('click', e => {
-
       e.preventDefault();
       if (e.target && e.target.closest('.dropdown-item')) {
         console.log(e);
@@ -922,7 +928,6 @@ class Token {
     this.tokenInput.addEventListener('blur', e => this.blur(e));
     this.tokenInput.addEventListener('keydown', e => this.keydown(e));
   }
-
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (function (element, options) {
