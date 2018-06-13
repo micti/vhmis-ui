@@ -2349,8 +2349,16 @@ h5, h6 {
     .modal--close-button {
       display: none; } }
 
+.token--container {
+  position: relative; }
+
+.token {
+  flex-wrap: wrap;
+  height: auto; }
+
 .token--list {
-  display: flex; }
+  display: flex;
+  flex-wrap: wrap; }
   .token--list li {
     border: 1px solid #ccc;
     background: #ddd;
@@ -2364,6 +2372,14 @@ h5, h6 {
 .token--input {
   border: 0;
   outline: none; }
+
+.token--suggestion {
+  margin-top: 2px;
+  width: 100%; }
+  .token--suggestion::before, .token--suggestion::after {
+    display: none; }
+  .token--suggestion.is-active {
+    display: block; }
 
 .m-r-4 {
   margin-right: 16px; }

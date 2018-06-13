@@ -1,5 +1,15 @@
+.token--container {
+  position: relative;
+}
+
+.token {
+  flex-wrap: wrap;
+  height: auto;
+}
+
 .token--list {
   display: flex;
+  flex-wrap: wrap;
 
   li {
     border: 1px solid #ccc;
@@ -18,4 +28,17 @@
 .token--input {
   border: 0;
   outline: none;
+}
+
+.token--suggestion {
+  margin-top: 2px;
+  width: 100%;
+
+  &::before, &::after {
+    display: none;
+  }
+
+  &.is-active {
+    display: block;
+  }
 }

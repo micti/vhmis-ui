@@ -27,6 +27,9 @@ gulp.task('watch', () => {
 gulp.task('js', () => {
   gulp.src('src/js/index.js')
     .pipe(webpack(require('./webpack.config.js')))
+    .on('error', e => {
+      console.log(e)
+    })
     .pipe(gulp.dest('client/js'))
     .pipe(gulp.dest('docs/client/js'))
 })
