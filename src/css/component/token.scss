@@ -11,7 +11,7 @@
   display: flex;
   flex-wrap: wrap;
 
-  li {
+  .token-item {
     border: 1px solid #ccc;
     background: #ddd;
     margin-right: 0.25rem;
@@ -19,7 +19,7 @@
     padding: 0px 2px;
     cursor: default;
 
-    span {
+    span, .token-item--delete {
       cursor: pointer;
     }
   }

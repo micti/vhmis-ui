@@ -104,7 +104,6 @@ class Modal {
     }
 
     if (e.target.id === 'overlay' || e.keyCode === 27) {
-      console.log(e)
       let currentOpenedModal = MODAL_GLOBAL.modalStack.pop()
       currentOpenedModal.hide()
 

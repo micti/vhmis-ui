@@ -77,15 +77,48 @@ class Token {
       return
     }
 
+    // Tạo item, set event
     let item = document.createElement('li')
-    item.innerHTML = data.name + ' <span><i class="fas fa-times"></i></span>'
+    item.setAttribute('data-id', data.id)
+    item.classList.add('token-item')
+    item.innerHTML = data.name + ' <span class="tọken-item--delete"><i class="fas fa-times"></i></span>'
     this.tokenList.appendChild(item)
+    let itemDeleteButton = item.querySelector('.tọken-item--delete')
+    if (itemDeleteButton) {
+      itemDeleteButton.addEventListener('click', e => this._deleteItemFromButton(e))
+    }
 
     this.value.push(data.id)
     this.element.value = this.value.join(',')
 
     this.tokenInput.value = ''
     this._clearSuggestion()
+  }
+
+  _deleteItemFromButton (e) {
+    let item = e.target.closest('.token-item')
+    if (!item) {
+      return
+    }
+
+    this.deleteItem(item.getAttribute('data-id'))
+  }
+
+  deleteItem (value) {
+    let index = this.value.indexOf(value)
+
+    // Bỏ qua nếu chưa có
+    if (index === - 1) {
+      return
+    }
+
+    // Xóa trong token list
+    let item = this.tokenList.querySelector('.token-item[data-id="' + value.replace('"', '\\"') + '"]')
+    item.remove()
+
+    // Cập nhật lại giá trị mới
+    this.value.splice(index, 1)
+    this.element.value = this.value.join(',')
   }
 
   keydown (e) {
