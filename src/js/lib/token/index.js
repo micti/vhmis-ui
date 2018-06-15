@@ -15,28 +15,7 @@ class Token {
     this.tokenSuggestion = null
     this.tokenList = null
     this.value = []
-    this.data = [
-      {
-        id: 2,
-        name: 'ABC'
-      },
-      {
-        id: 1,
-        name: '1ABC'
-      },
-      {
-        id: 41,
-        name: '1ABdddC'
-      },
-      {
-        id: 16,
-        name: '1AvvvBC'
-      },
-      {
-        id: 91,
-        name: '1A2222BC'
-      }
-    ]
+    this.data = this.options.data
 
     // Khởi tạo
     this._init()
