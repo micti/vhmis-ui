@@ -11,26 +11,29 @@ export default function () {
   })
 
   let tokenTest = token(document.getElementById('test-token'), {
+    // remoteData: '../data/data.json',
+    // requestMethod: 'get',
+    // requestSearchParam: 'query',
     data: [
       {
         id: 2,
-        name: 'ABC'
+        name: 'England'
       },
       {
         id: 1,
-        name: '1ABC'
+        name: 'Italy'
       },
       {
         id: 41,
-        name: '1ABdddC'
+        name: 'France'
       },
       {
         id: 16,
-        name: '1AvvvBC'
+        name: 'Estonia'
       },
       {
         id: 91,
-        name: '1A2222BC'
+        name: 'Vietnam'
       }
     ]
   })

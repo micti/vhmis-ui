@@ -22,12 +22,23 @@
     span, .token-item--delete {
       cursor: pointer;
     }
+
+    &.is-active {
+      border-color: #aaa;
+    }
   }
 }
 
 .token--input {
   border: 0;
   outline: none;
+  font-size: 1rem;
+  width: auto;
+  flex-grow: 1;
+}
+
+.token-message {
+  padding: 0 1rem;
 }
 
 .token--suggestion {

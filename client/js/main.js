@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -265,9 +265,27 @@ Selector.prototype = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkErrorResponse;
+// Một số hàm hỗ trợ thêm cho request qua fetch API
+
+function checkErrorResponse(response) {
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    var error = new Error(response.statusText);
+    error.response = response;
+    throw error;
+  }
+}
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__global__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(4);
 
 
 
@@ -280,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -352,11 +370,11 @@ function init() {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__research__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__research__ = __webpack_require__(5);
 
 
 let apps = {
@@ -366,12 +384,12 @@ let apps = {
 /* harmony default export */ __webpack_exports__["a"] = (apps);
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_modal__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_tab__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lib_modal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__lib_tab__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lib_token__ = __webpack_require__(8);
 
 
@@ -386,21 +404,24 @@ let apps = {
   });
 
   let tokenTest = Object(__WEBPACK_IMPORTED_MODULE_2__lib_token__["a" /* default */])(document.getElementById('test-token'), {
+    // remoteData: '../data/data.json',
+    // requestMethod: 'get',
+    // requestSearchParam: 'query',
     data: [{
       id: 2,
-      name: 'ABC'
+      name: 'England'
     }, {
       id: 1,
-      name: '1ABC'
+      name: 'Italy'
     }, {
       id: 41,
-      name: '1ABdddC'
+      name: 'France'
     }, {
       id: 16,
-      name: '1AvvvBC'
+      name: 'Estonia'
     }, {
       id: 91,
-      name: '1A2222BC'
+      name: 'Vietnam'
     }]
   });
   document.getElementById('get-token-value').addEventListener('click', e => {
@@ -411,7 +432,7 @@ let apps = {
 });
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -541,12 +562,12 @@ class Modal {
 });
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_selector__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_fetch__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_fetch__ = __webpack_require__(1);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -695,46 +716,44 @@ class Tab {
 });
 
 /***/ }),
-/* 7 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkErrorResponse;
-// Một số hàm hỗ trợ thêm cho request qua fetch API
-
-function checkErrorResponse(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  } else {
-    var error = new Error(response.statusText);
-    error.response = response;
-    throw error;
-  }
-}
-
-/***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_fetch__ = __webpack_require__(1);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+
+
 const KEY = {
   up: 38,
   down: 40,
+  left: 37,
+  right: 39,
   enter: 13,
-  esc: 27
+  esc: 27,
+  delete: 8
+};
+
+const DEFAULT_OPTIONS = {
+  remoteData: null,
+  searchDelay: 500,
+  minChar: 3
 };
 
 class Token {
   constructor(element, options) {
     this.element = element;
-    this.options = options;
+    this.options = _extends({}, DEFAULT_OPTIONS, options);
     this.token = null;
     this.tokenContainer = null;
     this.tokenInput = null;
     this.tokenSuggestion = null;
     this.tokenList = null;
     this.value = [];
-    this.data = this.options.data;
+    this.data = this.options.data ? this.options.data : [];
 
     // Khởi tạo
     this._init();
@@ -832,10 +851,28 @@ class Token {
       return this._addItemFromSelect();
     }
 
-    this.tokenSuggestion.innerHTML = 'Bạn cứ gõ tiếp đi';
-    let search = this.tokenInput.value;
+    if (e.keyCode === KEY.left && this.tokenInput.value === '') {
+      return this._selectTokenLeft();
+    }
 
-    this._search(search);
+    if (e.keyCode === KEY.right && this.tokenInput.value === '') {
+      return this._selectTokenRight();
+    }
+
+    if (e.keyCode === KEY.right && this.tokenInput.value === '') {
+      return this._selectTokenRight();
+    }
+
+    if (e.keyCode === KEY.delete && this.tokenInput.value === '') {
+      return this._selectTokenOrDelete();
+    }
+
+    if (String.fromCharCode(e.which)) {
+      // Gọi sau 5ms, đảm bảo event này thực hiện xong, khi đó lấy giá trị value sẽ có ký tự mới gõ
+      setTimeout(() => {
+        this._search();
+      }, 5);
+    }
   }
 
   _selectDown() {
@@ -843,6 +880,46 @@ class Token {
 
     if (current === null) {
       this.tokenSuggestion.querySelector('.dropdown-item').classList.add('is-active');
+      return;
+    }
+
+    if (current.nextSibling) {
+      current.classList.remove('is-active');
+      current.nextSibling.classList.add('is-active');
+    }
+  }
+
+  _selectTokenOrDelete() {
+    let item = this.tokenList.querySelector('.token-item.is-active');
+
+    if (item === null) {
+      this.tokenList.querySelector('.token-item:last-child').classList.add('is-active');
+      return;
+    }
+
+    // Xóa
+    this.deleteItem(item.getAttribute('data-id'));
+  }
+
+  _selectTokenLeft() {
+    let current = this.tokenList.querySelector('.token-item.is-active');
+
+    if (current === null) {
+      this.tokenList.querySelector('.token-item:last-child').classList.add('is-active');
+      return;
+    }
+
+    if (current.previousSibling) {
+      current.classList.remove('is-active');
+      current.previousSibling.classList.add('is-active');
+    }
+  }
+
+  _selectTokenRight() {
+    let current = this.tokenList.querySelector('.token-item.is-active');
+
+    if (current === null) {
+      this.tokenList.querySelector('.token-item').classList.add('is-active');
       return;
     }
 
@@ -886,21 +963,71 @@ class Token {
     });
   }
 
-  _search(value) {
-    this.searching = true;
+  _search() {
+    var _this = this;
 
-    let suggestion = '<ul class="dropdown-content">';
-    for (let data of this.data) {
-      suggestion += '<li class="dropdown-item" data-id="' + data.id + '" data-name="' + data.name.replace('"', '\\"') + '"><a href="">' + data.name + '</a></li>';
-    }
-    suggestion += '</ul>';
+    return _asyncToGenerator(function* () {
+      let value = _this.tokenInput.value;
+      _this.searching = true;
 
-    this.tokenSuggestion.innerHTML = suggestion;
-    this.searching = false;
+      if (value.length < _this.options.minChar) {
+        return _this._clearSuggestion();
+      }
+
+      if (_this.options.remoteData !== null) {
+        _this.data = yield _this._searchRemoteData(value);
+      } else {
+        _this.data = _this._filterData(value);
+      }
+
+      // Chỉ hiện kết quả nếu giá trị tìm kiếm vẫn giữ nguyên sau khi request search xong
+      if (value !== _this.tokenInput.value) {
+        console.log(value);
+        return;
+      }
+
+      if (_this.data.length === 0) {
+        return _this._noDataSuggestion();
+      }
+
+      let suggestion = '<ul class="dropdown-content">';
+      for (let data of _this.data) {
+        suggestion += '<li class="dropdown-item" data-id="' + data.id + '" data-name="' + data.name.replace('"', '\\"') + '"><a href="">' + data.name + '</a></li>';
+      }
+      suggestion += '</ul>';
+
+      _this.tokenSuggestion.innerHTML = suggestion;
+      _this.searching = false;
+    })();
+  }
+
+  _searchRemoteData(value) {
+    var _this2 = this;
+
+    return _asyncToGenerator(function* () {
+      let request = _this2.options.remoteData + '?' + _this2.options.requestSearchParam + '=' + value;
+      let data = yield (yield fetch(encodeURI(request))).json();
+      return data;
+    })();
+  }
+
+  _filterData(value) {
+    let data = [];
+    this.options.data.forEach(element => {
+      if (element.name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
+        data.push(element);
+      }
+    });
+
+    return data;
   }
 
   _clearSuggestion() {
-    this.tokenSuggestion.innerHTML = 'Tieeps tuc';
+    this.tokenSuggestion.innerHTML = '<div class="dropdown-text token-message">Gõ vài ký tự để tìm kiếm</div>';
+  }
+
+  _noDataSuggestion() {
+    this.tokenSuggestion.innerHTML = '<div class="dropdown-text token-message">Không tìm thấy kết quả phù hợp</div>';
   }
 
   _init() {
@@ -936,14 +1063,17 @@ class Token {
     this.tokenSuggestion.classList.add('dropdown-menu');
     this.tokenContainer.appendChild(this.tokenSuggestion);
 
+    // Trạng thái mặc định của token suggestion
+    this._clearSuggestion();
+
     // Event
     this._addEvents();
   }
 
   _addEvents() {
-    // this.tokenInput.addEventListener('focus', e => this.focus(e))
-    // this.tokenInput.addEventListener('blur', e => this.blur(e))
-    // this.tokenInput.addEventListener('keydown', e => this.keydown(e))
+    this.tokenInput.addEventListener('focus', e => this.focus(e));
+    this.tokenInput.addEventListener('blur', e => this.blur(e));
+    this.tokenInput.addEventListener('keydown', e => this.keydown(e));
 
     // Not Click but mousedown
     this.tokenSuggestion.addEventListener('mousedown', e => {
@@ -952,15 +1082,10 @@ class Token {
     this.tokenSuggestion.addEventListener('click', e => {
       e.preventDefault();
       if (e.target && e.target.closest('.dropdown-item')) {
-        console.log(e);
         let item = e.target.closest('.dropdown-item');
         this._addItemFromClick(item);
       }
     });
-
-    this.tokenInput.addEventListener('focus', e => this.focus(e));
-    this.tokenInput.addEventListener('blur', e => this.blur(e));
-    this.tokenInput.addEventListener('keydown', e => this.keydown(e));
   }
 }
 
