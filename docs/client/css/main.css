@@ -2389,6 +2389,44 @@ h5, h6 {
   .token--suggestion.is-active {
     display: block; }
 
+.datepicker-container {
+  width: 250px;
+  background: #fff; }
+  .datepicker-container .datepicker-title {
+    display: flex;
+    padding: 8px 0;
+    align-items: center; }
+    .datepicker-container .datepicker-title .datepicker-title--month {
+      width: 150px;
+      text-align: center;
+      font-weight: 700; }
+  .datepicker-container .datepicker-control {
+    cursor: pointer; }
+  .datepicker-container .datepicker-calendar .datepicker-calendar--row {
+    display: flex;
+    border-top: 1px solid #ccc; }
+    .datepicker-container .datepicker-calendar .datepicker-calendar--row div {
+      text-align: center;
+      width: 14.28571%;
+      height: 30px;
+      padding-top: 4px;
+      cursor: pointer; }
+      .datepicker-container .datepicker-calendar .datepicker-calendar--row div.is-selected {
+        background: #3f51b5;
+        color: #fff; }
+      .datepicker-container .datepicker-calendar .datepicker-calendar--row div.is-not-day-in-month {
+        color: #666; }
+      .datepicker-container .datepicker-calendar .datepicker-calendar--row div.is-not-active {
+        color: #aaa !important;
+        background: #fff !important;
+        cursor: default !important; }
+      .datepicker-container .datepicker-calendar .datepicker-calendar--row div.is-in-range {
+        background: #b794f6;
+        color: #000; }
+    .datepicker-container .datepicker-calendar .datepicker-calendar--row.is-title {
+      border-top: 0px;
+      height: 25px; }
+
 .m-r-4 {
   margin-right: 16px; }
 

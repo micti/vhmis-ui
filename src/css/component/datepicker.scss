@@ -1,0 +1,60 @@
+.datepicker-container {
+  width: 250px;
+  background: #fff;
+
+  .datepicker-title {
+    display: flex;
+    padding: 8px 0;
+    align-items: center;
+
+    .datepicker-title--month {
+      width: 150px;
+      text-align: center;
+      font-weight: 700;
+    }
+  }
+
+  .datepicker-control {
+    cursor: pointer;
+  }
+
+  .datepicker-calendar {
+    .datepicker-calendar--row {
+      display: flex;
+      border-top: 1px solid #ccc;
+
+      div {
+        text-align: center;
+        width: (100% / 7);
+        height: 30px;
+        padding-top: 4px;
+        cursor: pointer;
+
+        &.is-selected {
+          background: $indigo-500;
+          color: #fff;
+        }
+
+        &.is-not-day-in-month {
+          color: #666;
+        }
+
+        &.is-not-active {
+          color: #aaa !important;
+          background: #fff !important;
+          cursor: default !important;
+        }
+
+        &.is-in-range {
+          background: $indigo-200;
+          color: #000;
+        }
+      }
+
+      &.is-title {
+        border-top: 0px;
+        height: 25px;
+      }
+    }
+  }
+}
