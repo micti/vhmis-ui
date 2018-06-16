@@ -57,6 +57,9 @@ class Token {
 
     // Hiển thị token sugggestion
     this.tokenSuggestion.classList.remove('is-active')
+
+    // Xóa value
+    this.tokenInput.value = ''
   }
 
   addItem (data) {
